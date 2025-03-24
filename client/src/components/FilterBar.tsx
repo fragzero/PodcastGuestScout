@@ -60,7 +60,7 @@ export default function FilterBar({ onFilterChange, currentFilters }: FilterBarP
                 <SelectValue placeholder="All Platforms" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Platforms</SelectItem>
+                <SelectItem value="all-platforms">All Platforms</SelectItem>
                 {platformEnum.map((platform) => (
                   <SelectItem key={platform} value={platform}>
                     {platform.charAt(0).toUpperCase() + platform.slice(1)}
@@ -76,7 +76,7 @@ export default function FilterBar({ onFilterChange, currentFilters }: FilterBarP
                 <SelectValue placeholder="All Followers" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Followers</SelectItem>
+                <SelectItem value="all-followers">All Followers</SelectItem>
                 <SelectItem value="0-5k">0-5K</SelectItem>
                 <SelectItem value="5k-10k">5K-10K</SelectItem>
                 <SelectItem value="10k-50k">10K-50K</SelectItem>
@@ -92,7 +92,7 @@ export default function FilterBar({ onFilterChange, currentFilters }: FilterBarP
                 <SelectValue placeholder="All Regions" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Regions</SelectItem>
+                <SelectItem value="all-regions">All Regions</SelectItem>
                 {regionEnum.map((region) => (
                   <SelectItem key={region} value={region}>
                     {region.toUpperCase()}
