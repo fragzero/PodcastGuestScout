@@ -145,7 +145,7 @@ export default function AddCandidateDialog({ isOpen, onClose }: AddCandidateDial
                       <FormLabel>Primary Platform</FormLabel>
                       <Select 
                         onValueChange={field.onChange} 
-                        defaultValue={field.value}
+                        defaultValue={field.value as string || ""}
                       >
                         <FormControl>
                           <SelectTrigger>
@@ -193,7 +193,7 @@ export default function AddCandidateDialog({ isOpen, onClose }: AddCandidateDial
                     <FormLabel>Region</FormLabel>
                     <Select 
                       onValueChange={field.onChange} 
-                      defaultValue={field.value}
+                      defaultValue={field.value as string || ""}
                     >
                       <FormControl>
                         <SelectTrigger>

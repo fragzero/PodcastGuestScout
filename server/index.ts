@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { pushSchema } from "./schema-push";
 
 const app = express();
 app.use(express.json());
@@ -37,6 +38,14 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Create database tables before starting the server
+  try {
+    await pushSchema();
+    log('Database schema pushed successfully');
+  } catch (error) {
+    log(`Error pushing schema: ${error}`);
+  }
+  
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
