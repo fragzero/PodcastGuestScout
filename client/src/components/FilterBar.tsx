@@ -14,28 +14,28 @@ export default function FilterBar({ onFilterChange, currentFilters }: FilterBarP
   const handlePlatformChange = (value: string) => {
     onFilterChange({
       ...currentFilters,
-      platform: value as any,
+      platform: value === 'all-platforms' ? '' : value as any,
     });
   };
 
   const handleFollowerRangeChange = (value: string) => {
     onFilterChange({
       ...currentFilters,
-      followerRange: value as any,
+      followerRange: value === 'all-followers' ? '' : value as any,
     });
   };
 
   const handleRegionChange = (value: string) => {
     onFilterChange({
       ...currentFilters,
-      region: value as any,
+      region: value === 'all-regions' ? '' : value as any,
     });
   };
 
   const handleTopicChange = (value: string) => {
     onFilterChange({
       ...currentFilters,
-      topic: value as any,
+      topic: value === 'all-topics' ? '' : value as any,
     });
   };
 
@@ -108,7 +108,7 @@ export default function FilterBar({ onFilterChange, currentFilters }: FilterBarP
                 <SelectValue placeholder="All Topics" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Topics</SelectItem>
+                <SelectItem value="all-topics">All Topics</SelectItem>
                 {topicEnum.map((topic) => (
                   <SelectItem key={topic} value={topic}>
                     {topic.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
