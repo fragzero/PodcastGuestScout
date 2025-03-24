@@ -1,0 +1,62 @@
+Product Requirements Document (PRD): Podcast Guest Candidate Research
+1. Introduction
+
+This document outlines the requirements for a freelance researcher tasked with identifying and compiling a list of 100-200 potential podcast guest candidates for a personality-driven podcast in the personal development niche. The podcast aims for a conversational, open, and personal tone, similar to the "Whatever Podcast" but with less debate and more depth.
+
+2. Goals
+
+Identify a diverse pool of potential female podcast guests who align with the podcast's target audience and format.
+Provide a comprehensive list of candidates with relevant information for evaluation and selection.
+Deliver the list within a short timeframe (Tuesday, Business Open Day).
+3. Target Audience
+
+The podcast's target audience is interested in personal development, modern relationships, and open, unfiltered conversations.
+The ideal guest should resonate with this audience through their online presence and personality.
+4. Functional Requirements
+
+Candidate Identification:
+Identify 100-200 potential female podcast guests.
+Focus on women who are:
+Pretty and outgoing.
+Comfortable on camera and articulate.
+Unfiltered and open to discussing various topics.
+Active on social media platforms (TikTok, Instagram, YouTube) or podcasts.
+Preferably micro-influencers or emerging content creators.
+Aligned with Western culture (U.S., Canada, U.K., Australia).
+Bonus: Interest in personal development, dating, or modern relationships.
+Data Collection:
+Gather the following information for each candidate:
+Name
+Social media handle(s)
+Primary platform(s)
+Follower count (or relevant audience size metric)
+A brief description outlining their suitability for the podcast.
+Data Organization:
+Present the collected data in a clean and organized format (spreadsheet or Airtable).
+5. Non-Functional Requirements
+
+Timeliness:
+The completed list must be delivered by Tuesday, Business Open Day.
+Accuracy:
+The information provided for each candidate should be accurate and up-to-date.
+Clarity:
+The spreadsheet or Airtable should be easy to read and understand.
+Relevance:
+The candidates provided should align with the desired tone and subject matter of the podcast.
+Sample Requirement:
+Applicants must provide a sample of 10 potential guest leads to demonstrate their understanding of the project's requirements.
+6. Deliverables
+
+A spreadsheet or Airtable containing:
+Name
+Social media handle(s)
+Platform(s)
+Follower count
+Short description/rationale for inclusion
+7. Acceptance Criteria
+
+The spreadsheet/Airtable contains 100-200 relevant candidate profiles.
+All required data fields are completed for each candidate.
+The candidates meet the specified criteria (personality, platform presence, cultural alignment).
+The delivery is made by the specified deadline.
+The initial 10 lead sample provided, demonstrates an understanding of the required persona.
