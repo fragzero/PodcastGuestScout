@@ -7,6 +7,7 @@ import { Candidate } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { exportToCsv } from "@/utils/candidates";
 import { Skeleton } from "@/components/ui/skeleton";
+import Sidebar from "@/components/Sidebar";
 
 interface ReportsProps {
   sidebarOpen: boolean;
@@ -115,8 +116,9 @@ export default function Reports({ sidebarOpen, toggleSidebar }: ReportsProps) {
   };
 
   return (
-    <div className={`flex h-screen transition-all duration-300 ${sidebarOpen ? "ml-64" : "ml-20"}`}>
-      <div className="flex-1 overflow-auto p-8">
+    <div className="flex h-screen">
+      <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+      <div className={`flex-1 overflow-auto p-8 transition-all duration-300 ${sidebarOpen ? "ml-64" : "ml-20"}`}>
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-3xl font-bold text-gray-900">Reports & Analytics</h1>
           <Button onClick={handleExportData} disabled={isLoading || !candidates?.data?.length}>

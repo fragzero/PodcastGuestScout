@@ -12,6 +12,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import Sidebar from "@/components/Sidebar";
 
 interface SettingsProps {
   sidebarOpen: boolean;
@@ -127,8 +128,9 @@ export default function Settings({ sidebarOpen, toggleSidebar }: SettingsProps) 
   };
 
   return (
-    <div className={`flex h-screen transition-all duration-300 ${sidebarOpen ? "ml-64" : "ml-20"}`}>
-      <div className="flex-1 overflow-auto p-8">
+    <div className="flex h-screen">
+      <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+      <div className={`flex-1 overflow-auto p-8 transition-all duration-300 ${sidebarOpen ? "ml-64" : "ml-20"}`}>
         <h1 className="text-3xl font-bold text-gray-900 mb-6">Settings</h1>
         
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
