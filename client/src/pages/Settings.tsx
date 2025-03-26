@@ -1,18 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import Sidebar from "@/components/Sidebar";
+import { loadSettings, saveSettingSection, applyAppearanceSettings } from "@/utils/settings";
 
 interface SettingsProps {
   sidebarOpen: boolean;
@@ -53,7 +52,7 @@ const apiFormSchema = z.object({
 
 export default function Settings({ sidebarOpen, toggleSidebar }: SettingsProps) {
   const [activeTab, setActiveTab] = useState("profile");
-
+  
   // Profile form
   const profileForm = useForm<z.infer<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
@@ -93,38 +92,59 @@ export default function Settings({ sidebarOpen, toggleSidebar }: SettingsProps) 
       enableApi: false,
     },
   });
+  
+  // Load saved settings on component mount
+  useEffect(() => {
+    const settings = loadSettings();
+    
+    // Set form defaults with saved settings
+    profileForm.reset(settings.profile);
+    notificationForm.reset(settings.notifications);
+    appearanceForm.reset(settings.appearance);
+    apiForm.reset(settings.api);
+    
+    // Apply appearance settings
+    applyAppearanceSettings(settings.appearance);
+  }, []);
 
   // Form submission handlers
   const onProfileSubmit = (data: z.infer<typeof profileFormSchema>) => {
+    saveSettingSection('profile', data);
+    
     toast({
       title: "Profile updated",
       description: "Your profile settings have been updated.",
     });
-    console.log(data);
   };
 
   const onNotificationSubmit = (data: z.infer<typeof notificationFormSchema>) => {
+    saveSettingSection('notifications', data);
+    
     toast({
       title: "Notification preferences updated",
       description: "Your notification settings have been saved.",
     });
-    console.log(data);
   };
 
   const onAppearanceSubmit = (data: z.infer<typeof appearanceFormSchema>) => {
+    const newSettings = saveSettingSection('appearance', data);
+    
+    // Apply the appearance settings immediately
+    applyAppearanceSettings(newSettings.appearance);
+    
     toast({
       title: "Appearance settings updated",
       description: "Your appearance settings have been applied.",
     });
-    console.log(data);
   };
 
   const onApiSubmit = (data: z.infer<typeof apiFormSchema>) => {
+    saveSettingSection('api', data);
+    
     toast({
       title: "API settings updated",
       description: "Your API settings have been saved.",
     });
-    console.log(data);
   };
 
   return (
@@ -477,22 +497,17 @@ export default function Settings({ sidebarOpen, toggleSidebar }: SettingsProps) 
                                 variant="outline"
                                 className="rounded-l-none"
                                 onClick={() => {
-                                  const newKey = Array.from({ length: 32 }, () => 
-                                    Math.floor(Math.random() * 16).toString(16)
-                                  ).join('');
-                                  apiForm.setValue('apiKey', newKey);
-                                  toast({
-                                    title: "New API Key Generated",
-                                    description: "Your API key has been regenerated.",
-                                  });
+                                  const newKey = Math.random().toString(36).substring(2, 15) + 
+                                                Math.random().toString(36).substring(2, 15);
+                                  apiForm.setValue("apiKey", newKey);
                                 }}
                               >
-                                Generate
+                                Generate New Key
                               </Button>
                             </div>
                           </FormControl>
                           <FormDescription>
-                            Your API key is secret. Never share it publicly.
+                            This key will be used to authenticate API requests.
                           </FormDescription>
                           <FormMessage />
                         </FormItem>
@@ -503,13 +518,6 @@ export default function Settings({ sidebarOpen, toggleSidebar }: SettingsProps) 
                   </form>
                 </Form>
               </CardContent>
-              <CardFooter className="flex flex-col items-start">
-                <h3 className="text-lg font-medium mb-2">API Documentation</h3>
-                <p className="text-sm text-neutral-500 mb-4">
-                  Learn how to integrate with our API to access your podcast guest candidate data programmatically.
-                </p>
-                <Button variant="outline">View API Documentation</Button>
-              </CardFooter>
             </Card>
           </TabsContent>
         </Tabs>
