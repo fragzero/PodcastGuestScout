@@ -8,6 +8,7 @@ import Candidates from "@/pages/Candidates";
 import AddCandidate from "@/pages/AddCandidate";
 import Reports from "@/pages/Reports";
 import Settings from "@/pages/Settings";
+import Filters from "@/pages/Filters";
 import { useState } from "react";
 
 function Router() {
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/" component={() => <Dashboard sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />} />
       <Route path="/candidates" component={() => <Candidates sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />} />
       <Route path="/add" component={() => <AddCandidate sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />} />
+      <Route path="/filters" component={() => <Filters sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />} />
       <Route path="/reports" component={() => <Reports sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />} />
       <Route path="/settings" component={() => <Settings sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />} />
       <Route component={NotFound} />
